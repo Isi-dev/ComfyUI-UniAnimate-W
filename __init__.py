@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 from .uniAnimate_Inference import NODE_CLASS_MAPPINGS, NODE_DISPLAY_NAME_MAPPINGS
 
+=======
+from .uniAnimate_Inference import NODE_CLASS_MAPPINGS, NODE_DISPLAY_NAME_MAPPINGS
+
+>>>>>>> 626e7afc02230297b6f553675ea1c32c29971314
 __all__ = ['NODE_CLASS_MAPPINGS', 'NODE_DISPLAY_NAME_MAPPINGS']
