@@ -35,6 +35,9 @@ conda install pytorch==2.3.1 torchvision==0.18.1 torchaudio==2.3.1 pytorch-cuda=
 ```
 
 If not installed, then:
+
+
+```
 pip install opencv-python
 pip install pytorch_lightning
 pip install lightning_utilities #if not installed
@@ -46,6 +49,8 @@ pip install oss2
 pip install einops
 pip install args
 pip install modelscope
+
+```
 
 
 Download the required models (Around 14GB) after installing modelscope :
