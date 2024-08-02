@@ -3,6 +3,7 @@
 
 <div align="center">
 
+![] (https://github.com/Isi-dev/ComfyUI-UniAnimate/blob/main/gif.gif)
 
 #This is my ComfyUi-windows implementation for the image animation project -> UniAnimate: Taming Unified Video Diffusion Models for Consistent Human Image Animation
 
@@ -97,7 +98,7 @@ You can now upload the workflow in your '\Path-to-UniAnimate\' folder which is t
 You can also generate a video first, and then upload the last frame of the video as a pic to generate the next frames.
 
 
-@article{
+{
       project={ComfyUi-windows implementation for the image animation project -> UniAnimate: Taming Unified Video Diffusion Models for Consistent Human Image Animation},
       developer={Isimemen Omoifo Jnr},
       year={2024}
