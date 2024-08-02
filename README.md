@@ -7,14 +7,14 @@
 
 ## ComfyUi-windows implementation for the image animation project -> UniAnimate: Taming Unified Video Diffusion Models for Consistent Human Image Animation
 
-[🎨 Source Project Page](https://unianimate.github.io/)
+[🎨 UniAnimate Project Page](https://unianimate.github.io/)
 
 </div>
 
 
 ## Getting Started
 
-The ComfyUI nodes created are "Align & Generate poses for UniAnimate" & "Animate image with UniAnimate"
+The ComfyUI nodes created are `Align & Generate poses for UniAnimate` & `Animate image with UniAnimate`
 
 I used a ComfyUI_windows_portable to test the nodes in a Windows 10 OS with 16GB RAM & 12GB VRAM Nvidia Graphics Card
 
@@ -44,8 +44,7 @@ pip install pytorch_lightning
 pip install lightning_utilities 
 pip install lightning_fabric
 pip install torchmetrics
-pip install xFormers = 0.0.20 or copy torch 2.0.1 and supporting libraries and xFormer from A1111 and place in your Environment\Lib\site-packages (or)
-pip3 install -U xformers --index-url https://download.pytorch.org/whl/cu118 (for pytorch==2.3.1)
+pip install xFormers = 0.0.20 or copy torch 2.0.1 and supporting libraries and xFormer from A1111 and place in your Environment\Lib\site-packages (or) pip3 install -U xformers --index-url https://download.pytorch.org/whl/cu118 (for pytorch==2.3.1)
 pip install oss2
 pip install einops
 pip install args
@@ -91,12 +90,12 @@ You can now upload the workflow in your '\Path-to-UniAnimate\' folder which is t
 
 - > To run the "Animate image with UniAnimate" node, **~12G** GPU memory will be used. If your GPU is smaller than this, you can change the  `max_frames: 32` to other values, e.g., 24, 16, and 8.
 
-- > You can also generate a video first, and then upload the last frame of the video as a pic to generate the next frames with `useFirstFrame` set to true in the .
+- > You can also generate a video first, and then upload the last frame of the video as a pic to generate the next frames with `useFirstFrame` set to true in the `Align & Generate poses for UniAnimate` node.
 
 - > Generating 32 frames of video with a resolution of [512, 768] usually takes about 7 minutes.
 
 
-<div align="center"> Created by Isimemen Omoifo Jnr </div>
+<div align="center"> Developer: Isimemen Omoifo Jnr </div>
 
 
 ## Disclaimer
