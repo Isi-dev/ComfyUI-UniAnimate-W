@@ -3,7 +3,7 @@
 
 <div align="center">
 
-<img src="gif.gif" />
+<img src="gif.gif" width="50%" height="34%" />
 
 #This is my ComfyUi-windows implementation for the image animation project -> UniAnimate: Taming Unified Video Diffusion Models for Consistent Human Image Animation
 
@@ -41,8 +41,8 @@ If not installed, then:
 ```
 pip install opencv-python
 pip install pytorch_lightning
-pip install lightning_utilities #if not installed
-pip install lightning_fabric #if not installed
+pip install lightning_utilities 
+pip install lightning_fabric
 pip install torchmetrics
 pip install xFormers = 0.0.20 or copy torch 2.0.1 and supporting libraries and xFormer from A1111 and place in your Environment\Lib\site-packages (or)
 pip3 install -U xformers --index-url https://download.pytorch.org/whl/cu118 (for pytorch==2.3.1)
