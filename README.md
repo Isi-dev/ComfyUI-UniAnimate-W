@@ -48,6 +48,7 @@ pip install xFormers = 0.0.20 or copy torch 2.0.1 and supporting libraries and x
 pip install oss2
 pip install einops
 pip install args
+pip install onnxruntime-gpu==1.13.1
 pip install modelscope
 
 ```
@@ -84,7 +85,7 @@ All the models should be in the  '\Path-to-UniAnimate\checkpoints' folder as fol
 You can now upload the workflow in your '\Path-to-UniAnimate\' folder which is titled 'basicUniAnimateWorkflow.json', install missing custom nodes with the ComfyUI Manager if necessary, upload a picture & video (You can use those in the 'assets' folder), and run!
 
 
-**<font color=red>&#10004; Note </font>**:
+**<font color=red> Note </font>**:
 
 - > In the 'Align & Generate poses for UniAnimate' node, The first frame of the target pose sequence is used to calculate the scale coefficient for aligning the pose sequence with the reference image. If this frame includes the entire face and full-body pose (hands and feet), it will result in more accurate estimations and better video generation results.
 
