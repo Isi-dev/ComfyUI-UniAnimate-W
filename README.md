@@ -95,9 +95,6 @@ You can now upload the workflow in your '\Path-to-UniAnimate\' folder which is t
 - > Generating 32 frames of video with a resolution of [512, 768] usually takes about 7 minutes.
 
 
-<div align="center"> Developer: Isimemen Omoifo Jnr </div>
-
-
 ## Disclaimer
  
 I am not responsible for any user-generated content. Users are fully responsible for their actions when using these nodes and the generative model. Neither I nor the contributors to the UniAnimate project have any legal affiliation with or accountability for users' behaviors. It is crucial to use these nodes and the generative model responsibly, following both ethical and legal standards.
