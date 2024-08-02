@@ -86,9 +86,9 @@ You can now upload the workflow in your '\Path-to-UniAnimate\' folder which is t
 
 **<font color=red>&#10004; Note </font>**:
 
-- > In the 'Align & Generate poses for UniAnimate' node, the first frame in the target pose sequence is used to calculate the scale coefficient of the alignment. Therefore, if the first frame in the target pose sequence contains the entire face and pose (hand and foot), it can help obtain more accurate estimation and better video generation results.
+- > In the 'Align & Generate poses for UniAnimate' node, The first frame of the target pose sequence is used to calculate the scale coefficient for aligning the pose sequence with the reference image. If this frame includes the entire face and full-body pose (hands and feet), it will result in more accurate estimations and better video generation results.
 
-- > To run the "Animate image with UniAnimate" node, **~12G** GPU memory will be used. If your GPU is smaller than this, you can change the  `max_frames: 32` to other values, e.g., 24, 16, and 8.
+- > To run the "Animate image with UniAnimate" node, **~12GB** of GPU memory will be used. If your GPU has less memory, you can reduce the max_frames value from 32 to 24, 16, or 8.
 
 - > You can also generate a video first, and then upload the last frame of the video as a pic to generate the next frames with `useFirstFrame` set to true in the `Align & Generate poses for UniAnimate` node.
 
@@ -100,4 +100,4 @@ You can now upload the workflow in your '\Path-to-UniAnimate\' folder which is t
 
 ## Disclaimer
  
-I explicitly disclaim any responsibility for user-generated content. Users are solely liable for their actions while using these nodes and the generative model. I and the source project contributors have no legal affiliation with, nor accountability for, users' behaviors. It is imperative to use these nodes and the generative model responsibly, adhering to both ethical and legal standards.
+I am not responsible for any user-generated content. Users are fully responsible for their actions when using these nodes and the generative model. Neither I nor the contributors to the UniAnimate project have any legal affiliation with or accountability for users' behaviors. It is crucial to use these nodes and the generative model responsibly, following both ethical and legal standards.
