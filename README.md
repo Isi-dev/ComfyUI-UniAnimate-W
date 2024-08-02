@@ -3,7 +3,7 @@
 
 <div align="center">
 
-<img src="gif.gif" width="50%" height="34%" />
+<img src="gif.gif" />
 
 #This is my ComfyUi-windows implementation for the image animation project -> UniAnimate: Taming Unified Video Diffusion Models for Consistent Human Image Animation
 
