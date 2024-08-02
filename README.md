@@ -5,7 +5,7 @@
 
 <img src="gif.gif" />
 
-#This is my ComfyUi-windows implementation for the image animation project -> UniAnimate: Taming Unified Video Diffusion Models for Consistent Human Image Animation
+## ComfyUi-windows implementation for the image animation project -> UniAnimate: Taming Unified Video Diffusion Models for Consistent Human Image Animation
 
 [🎨 Source Project Page](https://unianimate.github.io/)
 
@@ -85,24 +85,18 @@ All the models should be in the  '\Path-to-UniAnimate\checkpoints' folder as fol
 You can now upload the workflow in your '\Path-to-UniAnimate\' folder which is titled 'basicUniAnimateWorkflow.json', install missing custom nodes with the ComfyUI Manager if necessary, upload a picture & video (You can use those in the 'assets' folder), and run!
 
 
-**<font color=red>&#10004; Some tips</font>**:
+**<font color=red>&#10004; Note </font>**:
 
 - > In the 'Align & Generate poses for UniAnimate' node, the first frame in the target pose sequence is used to calculate the scale coefficient of the alignment. Therefore, if the first frame in the target pose sequence contains the entire face and pose (hand and foot), it can help obtain more accurate estimation and better video generation results.
+
+- > To run the "Animate image with UniAnimate" node, **~12G** GPU memory will be used. If your GPU is smaller than this, you can change the  `max_frames: 32` to other values, e.g., 24, 16, and 8.
+
+- > You can also generate a video first, and then upload the last frame of the video as a pic to generate the next frames with `useFirstFrame` set to true in the .
 
 - > Generating 32 frames of video with a resolution of [512, 768] usually takes about 7 minutes.
 
 
-
-- > To run the "Animate image with UniAnimate" node, **~12G** GPU memory will be used. If your GPU is smaller than this, you can change the  `max_frames: 32` to other values, e.g., 24, 16, and 8.
-
-You can also generate a video first, and then upload the last frame of the video as a pic to generate the next frames.
-
-
-{
-      project={ComfyUi-windows implementation for the image animation project -> UniAnimate: Taming Unified Video Diffusion Models for Consistent Human Image Animation},
-      developer={Isimemen Omoifo Jnr},
-      year={2024}
-}
+<div align="center"> Created by Isimemen Omoifo Jnr </div>
 
 
 ## Disclaimer
