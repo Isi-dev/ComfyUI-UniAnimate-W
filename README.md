@@ -3,7 +3,7 @@
 
 <div align="center">
 
-![] (https://github.com/Isi-dev/ComfyUI-UniAnimate/blob/main/gif.gif)
+<img src="gif.gif" />
 
 #This is my ComfyUi-windows implementation for the image animation project -> UniAnimate: Taming Unified Video Diffusion Models for Consistent Human Image Animation
 
