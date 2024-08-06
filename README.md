@@ -95,7 +95,7 @@ You can now upload the workflow in your '\Path-to-UniAnimate\' folder which is t
 
 - > Generating 32 frames of video with a resolution of [512, 768] usually takes about 7 minutes.
 
-You can also change the pose of an image using another image as reference as shown below.
+You can also change the pose of an image to that of another image as shown below.
 
 <div align="center">
 <img src="repose.png" />
