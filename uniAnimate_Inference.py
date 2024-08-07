@@ -13,6 +13,7 @@ class UniAnimateImage:
     def INPUT_TYPES(cls):
         return {
             "required": {
+                "seed": ("INT", {"default": 11, "min": 0, "max": 1000000000, "step": 1}),
                 "steps": ("INT", {"default": 30, "min": 25, "max": 50, "step": 1}),
                 "useFirstFrame": ("BOOLEAN", { "default": False }),
                 "reference_image": ("IMAGE",),  # single image
@@ -28,7 +29,7 @@ class UniAnimateImage:
     FUNCTION = "process"
     CATEGORY = "image"
 
-    def process(self, steps, useFirstFrame, reference_image, ref_pose, pose_sequence, frame_interval, max_frames, resolution_x):
+    def process(self, seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequence, frame_interval, max_frames, resolution_x):
         cfg_update = Config(load=True)
         resolution_y = 768
         if resolution_x == 768:
@@ -38,7 +39,7 @@ class UniAnimateImage:
         
         # print(f"image is: {reference_image}")
         
-        frames = inference_unianimate_entrance(steps, useFirstFrame, reference_image, ref_pose, pose_sequence, frame_interval, max_frames, resolution, cfg_update=cfg_update.cfg_dict)
+        frames = inference_unianimate_entrance(seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequence, frame_interval, max_frames, resolution, cfg_update=cfg_update.cfg_dict)
         mask_template = torch.zeros((1, resolution_y, resolution_x), dtype=torch.float32)
         masks = [mask_template.clone() for _ in range(len(pose_sequence))]
         masks = torch.cat(masks, dim=0)
