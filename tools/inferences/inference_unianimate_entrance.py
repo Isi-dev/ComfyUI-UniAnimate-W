@@ -50,7 +50,7 @@ import cv2
 
 
 # @INFER_ENGINE.register_function()
-def inference_unianimate_entrance(steps, useFirstFrame, reference_image, ref_pose, pose_sequence, frame_interval, max_frames, resolution, cfg_update,  **kwargs):
+def inference_unianimate_entrance(seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequence, frame_interval, max_frames, resolution, cfg_update,  **kwargs):
     for k, v in cfg_update.items():
         if isinstance(v, dict) and k in cfg:
             cfg[k].update(v)
@@ -70,7 +70,7 @@ def inference_unianimate_entrance(steps, useFirstFrame, reference_image, ref_pos
         cfg.world_size = cfg.pmi_world_size * cfg.gpus_per_machine
     
     if cfg.world_size == 1:
-        return worker(0, steps, useFirstFrame, reference_image, ref_pose, pose_sequence, frame_interval, max_frames, resolution, cfg, cfg_update)
+        return worker(0, seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequence, frame_interval, max_frames, resolution, cfg, cfg_update)
     else:
         return mp.spawn(worker, nprocs=cfg.gpus_per_machine, args=(cfg, cfg_update))
     return cfg
@@ -189,7 +189,7 @@ def load_video_frames(ref_image_tensor, ref_pose_tensor, pose_tensors, train_tra
     return None, None, None, None, None, None  # Return default values if all attempts fail
 
 
-def worker(gpu, steps, useFirstFrame, reference_image, ref_pose, pose_sequence, frame_interval, max_frames, resolution, cfg, cfg_update):
+def worker(gpu, seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequence, frame_interval, max_frames, resolution, cfg, cfg_update):
     '''
     Inference worker for each gpu
     '''
@@ -200,7 +200,7 @@ def worker(gpu, steps, useFirstFrame, reference_image, ref_pose, pose_sequence, 
             cfg[k] = v
 
     cfg.gpu = gpu
-    cfg.seed = int(cfg.seed)
+    cfg.seed = int(seed)
     cfg.rank = cfg.pmi_rank * cfg.gpus_per_machine + gpu
     setup_seed(cfg.seed + cfg.rank)
 
@@ -318,6 +318,8 @@ def worker(gpu, steps, useFirstFrame, reference_image, ref_pose, pose_sequence, 
     manual_seed = int(cfg.seed + cfg.rank)
     setup_seed(manual_seed)
     # logging.info(f"[{idx}]/[{len(test_list)}] Begin to sample {ref_image_key}, pose sequence from {pose_seq_key} init seed {manual_seed} ...")
+    print(f"Seed: {manual_seed}")
+
     
     # initialize reference_image, pose_sequence, frame_interval, max_frames, resolution_x,
     vit_frame, video_data, misc_data, dwpose_data, random_ref_frame_data, random_ref_dwpose_data = load_video_frames(reference_image, ref_pose, pose_sequence, train_trans, vit_transforms, train_trans_pose, max_frames, frame_interval, resolution)
