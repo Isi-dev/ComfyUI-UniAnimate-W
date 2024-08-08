@@ -281,7 +281,7 @@ def worker(gpu, seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequ
     parent_directory = os.path.dirname(current_directory)
     # uniAnimate folder
     root_directory = os.path.dirname(parent_directory)
-    unifiedModel = os.path.join(root_directory, 'checkpoints/unianimate_16f_32f_non_ema_223000.pth ')
+    unifiedModel = os.path.join(root_directory, 'checkpoints/unianimate_16f_32f_non_ema_223000.pth')
     state_dict = torch.load(unifiedModel, map_location='cpu')
     if 'state_dict' in state_dict:
         state_dict = state_dict['state_dict']
