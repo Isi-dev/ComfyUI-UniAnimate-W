@@ -101,10 +101,10 @@ You can also change the pose of an image to that of another image as shown below
 <img src="repose.png" />
 
 You can watch a video on the basic workflow [here](https://youtu.be/vR8EHoAQziI) 
-
+<br></br>
+You can watch a video on the Installation [here](https://youtu.be/NFnhELV4bG0)
 
 </div>
-<div>You can watch a video on the Installation [here](https://youtu.be/NFnhELV4bG0) </div>
 
 ## Disclaimer
  
