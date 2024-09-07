@@ -20,7 +20,11 @@ Update 07/09/2024: Added two nodes: `Animate image with UniAnimate_Long` for lon
 
 I used a ComfyUI_windows_portable to test the nodes in a Windows 10 OS with 16GB RAM & 12GB VRAM Nvidia Graphics Card
 
-Download or clone this repository and place it in ComfyUI_windows_portable\ComfyUI\custom_nodes\
+Download or clone this repository and place it in ComfyUI_windows_portable\ComfyUI\custom_nodes\. Or install via the ComfyUI Manager by searching for
+
+```
+ComfyUI-UniAnimate-W
+```
 
 You will need python>=3.9 in your ComfyUI Environment.
 I tested the project with the following pytorch versions which you can install as follows
