@@ -655,7 +655,7 @@ class DiffusionDDIMLong(object):
                         noise.shape[2],
                         context_size=context_size,
                         context_stride=1,
-                        context_overlap=4,
+                        context_overlap=context_overlap,
                     )
                 )
         context_step = min(
