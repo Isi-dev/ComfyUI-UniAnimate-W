@@ -8,12 +8,12 @@ from ..utils import logging
 # logger = logging.get_logger(__name__)
 
 class Config(object):
-    def __init__(self, load=True, cfg_dict=None, cfg_level=None):
+    def __init__(self, config_file, load=True, cfg_dict=None, cfg_level=None):
         self._level = "cfg" + ("." + cfg_level if cfg_level is not None else "")
         
         current_directory = os.path.dirname(os.path.abspath(__file__))
         parent_directory = os.path.dirname(current_directory)
-        self.config_file_loc = os.path.join(parent_directory, 'configs/UniAnimate_infer.yaml')
+        self.config_file_loc = os.path.join(parent_directory, config_file)
 
         if load:
             self.args = self._parse_args()
@@ -24,7 +24,7 @@ class Config(object):
             cfg_dict = self._merge_cfg_from_base(cfg_base, cfg_dict)
             cfg_dict = self._update_from_args(cfg_dict)
             self.cfg_dict = cfg_dict
-        self._update_dict(cfg_dict)
+        self._update_dict(config_file, cfg_dict)
     
     def _parse_args(self):
         parser = argparse.ArgumentParser(
@@ -272,10 +272,10 @@ class Config(object):
                 cfg[key_split[0]][key_split[1]][key_split[2]][key_split[3]] = vals[idx]
         return cfg
     
-    def _update_dict(self, cfg_dict):
+    def _update_dict(self, config_file, cfg_dict):
         def recur(key, elem):
             if type(elem) is dict:
-                return key, Config(load=False, cfg_dict=elem, cfg_level=key)
+                return key, Config(config_file, load=False, cfg_dict=elem, cfg_level=key)
             else:
                 if type(elem) is str and elem[1:3]=="e-":
                     elem = float(elem)
