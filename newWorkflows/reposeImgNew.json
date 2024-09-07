@@ -1,0 +1,239 @@
+{
+  "last_node_id": 52,
+  "last_link_id": 91,
+  "nodes": [
+    {
+      "id": 50,
+      "type": "LoadImage",
+      "pos": [
+        843,
+        647
+      ],
+      "size": {
+        "0": 473.3907470703125,
+        "1": 810.0922241210938
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            89
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "welcomeGirl512.png",
+        "image"
+      ]
+    },
+    {
+      "id": 52,
+      "type": "PreviewImage",
+      "pos": [
+        1993,
+        421
+      ],
+      "size": {
+        "0": 210,
+        "1": 246
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 91
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
+      "id": 51,
+      "type": "PreviewImage",
+      "pos": [
+        1386,
+        403
+      ],
+      "size": {
+        "0": 540.4281005859375,
+        "1": 954.2872924804688
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 90
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
+      "id": 10,
+      "type": "LoadImage",
+      "pos": [
+        255,
+        404
+      ],
+      "size": {
+        "0": 473.3907470703125,
+        "1": 810.0922241210938
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            88
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "00008-4136189013.png",
+        "image"
+      ]
+    },
+    {
+      "id": 49,
+      "type": "ReposeImage",
+      "pos": [
+        922,
+        401
+      ],
+      "size": {
+        "0": 315,
+        "1": 174
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 88
+        },
+        {
+          "name": "pose",
+          "type": "IMAGE",
+          "link": 89
+        }
+      ],
+      "outputs": [
+        {
+          "name": "newPose",
+          "type": "IMAGE",
+          "links": [
+            90
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "pose",
+          "type": "IMAGE",
+          "links": [
+            91
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ReposeImage"
+      },
+      "widgets_values": [
+        7,
+        "fixed",
+        30,
+        false,
+        512
+      ]
+    }
+  ],
+  "links": [
+    [
+      88,
+      10,
+      0,
+      49,
+      0,
+      "IMAGE"
+    ],
+    [
+      89,
+      50,
+      0,
+      49,
+      1,
+      "IMAGE"
+    ],
+    [
+      90,
+      49,
+      0,
+      51,
+      0,
+      "IMAGE"
+    ],
+    [
+      91,
+      49,
+      1,
+      52,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.9229599817706606,
+      "offset": [
+        150.87071252512646,
+        -219.3009555197075
+      ]
+    }
+  },
+  "version": 0.4
+}
