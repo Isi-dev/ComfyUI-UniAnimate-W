@@ -18,6 +18,8 @@ The ComfyUI nodes created are `Align & Generate poses for UniAnimate` & `Animate
 
 Update 07/09/2024: Added two nodes: `Animate image with UniAnimate_Long` for long video generation, and `Repose image with UniAnimate` for img2img pose transfer
 
+Update 09/09/2024: Released a [video](https://youtu.be/Ne-DSBhfg8A) on using the two nodes for best results      
+
 I used a ComfyUI_windows_portable to test the nodes in a Windows 10 OS with 16GB RAM & 12GB VRAM Nvidia Graphics Card
 
 Download or clone this repository and place it in ComfyUI_windows_portable\ComfyUI\custom_nodes\. Or install via the ComfyUI Manager by searching for
