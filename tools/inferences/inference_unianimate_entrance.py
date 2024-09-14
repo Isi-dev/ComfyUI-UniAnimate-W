@@ -231,7 +231,7 @@ def worker(gpu, seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequ
     # logging.info(cfg)
     # logging.info(f"Running UniAnimate inference on gpu {gpu}")
     print(f'Running UniAnimate inference on gpu ({gpu})')
-    
+    cfg.resolution = resolution
     
     # [Diffusion]
     diffusion = DIFFUSION.build(cfg.Diffusion)
