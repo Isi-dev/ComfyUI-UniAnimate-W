@@ -77,7 +77,7 @@ python mv ./checkpoints/iic/unianimate/* ./checkpoints/
 
 ```
 
-All the models should be in the  '\Path-to-UniAnimate\checkpoints' folder as follows:
+All the models should be in the  '\Path-to-UniAnimate-W\checkpoints' folder as follows:
 
 
 ```
@@ -90,7 +90,7 @@ All the models should be in the  '\Path-to-UniAnimate\checkpoints' folder as fol
 
 ```
 
-You can now upload the workflow in your '\Path-to-UniAnimate\' folder which is titled 'basicUniAnimateWorkflow.json', install missing custom nodes with the ComfyUI Manager if necessary, upload a picture & video (You can use those in the 'assets' folder), and run!
+You can now upload the workflow in your '\Path-to-UniAnimate-W\' folder which is titled 'UniAnimateImg2Vid.json', install missing custom nodes with the ComfyUI Manager if necessary, upload a picture & video (You can use those in the 'assets' folder), and run!
 
 
 **<font color=red> Note </font>**:
