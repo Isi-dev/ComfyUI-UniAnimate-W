@@ -16,12 +16,12 @@ class Config(object):
         self.config_file_loc = os.path.join(parent_directory, config_file)
 
         if load:
-            self.args = self._parse_args()
+            self.args, self.unknown_args = self._parse_args()
             # logger.info("Loading config from {}.".format(self.args.cfg_file))
             self.need_initialization = True
-            cfg_base = self._load_yaml(self.args) # self._initialize_cfg()
+            # cfg_base = self._load_yaml(self.args) # self._initialize_cfg()
             cfg_dict = self._load_yaml(self.args)
-            cfg_dict = self._merge_cfg_from_base(cfg_base, cfg_dict)
+            # cfg_dict = self._merge_cfg_from_base(cfg_base, cfg_dict)
             cfg_dict = self._update_from_args(cfg_dict)
             self.cfg_dict = cfg_dict
         self._update_dict(config_file, cfg_dict)
@@ -118,7 +118,14 @@ class Config(object):
             default=None,
             nargs=argparse.REMAINDER
         )
-        return parser.parse_args()
+
+
+        args, unknown = parser.parse_known_args()
+
+        print(f"Unrecognized args: {unknown}")
+
+        return args, unknown
+        # return parser.parse_args()
 
 
     def _path_join(self, path_list):
@@ -158,7 +165,7 @@ class Config(object):
 
         if "_BASE_RUN" not in cfg.keys() and "_BASE_MODEL" not in cfg.keys() and "_BASE" not in cfg.keys():
             # return cfg if the base file is being accessed
-            cfg = self._merge_cfg_from_command_update(args, cfg)
+            # cfg = self._merge_cfg_from_command_update(args, cfg)
             return cfg
         
         if "_BASE" in cfg.keys():
