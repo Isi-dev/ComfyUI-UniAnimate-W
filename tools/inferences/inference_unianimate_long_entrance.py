@@ -461,8 +461,11 @@ def worker(gpu, seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequ
             
             if hasattr(cfg, "CPU_CLIP_VAE") and cfg.CPU_CLIP_VAE:
                 clip_encoder.cpu() # add this line
+                del clip_encoder  # Delete the object to free memory
                 autoencoder.cpu() # add this line
                 torch.cuda.empty_cache() # add this line
+                import gc
+                gc.collect()
 
             video_data = diffusion.ddim_sample_loop(
                 noise=noise_one,
@@ -481,8 +484,13 @@ def worker(gpu, seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequ
 
             if hasattr(cfg, "CPU_CLIP_VAE") and cfg.CPU_CLIP_VAE:
                 # if run forward of  autoencoder or clip_encoder second times, load them again
-                clip_encoder.cuda()
+                # clip_encoder.cuda()
+                del diffusion
+                torch.cuda.empty_cache()
+                gc.collect()
                 autoencoder.cuda()
+                
+                
                 
     
             video_data = 1. / cfg.scale_factor * video_data # [1, 4, h, w]
