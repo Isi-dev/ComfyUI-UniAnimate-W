@@ -25,7 +25,7 @@ I used a ComfyUI_windows_portable to test the nodes in a Windows 10 OS with 16GB
 Download or clone this repository and place it in ComfyUI_windows_portable\ComfyUI\custom_nodes\. Or install via the ComfyUI Manager by searching for
 
 ```
-ComfyUI-UniAnimate-W
+UniAnimate Nodes for ComfyUI
 ```
 
 You will need python>=3.9 in your ComfyUI Environment.
