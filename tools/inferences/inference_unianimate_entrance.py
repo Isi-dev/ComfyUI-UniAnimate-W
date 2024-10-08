@@ -204,6 +204,18 @@ def worker(gpu, seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequ
     cfg.rank = cfg.pmi_rank * cfg.gpus_per_machine + gpu
     setup_seed(cfg.seed + cfg.rank)
 
+    def is_libuv_supported():
+        build_info = torch.__config__.show()
+        return 'USE_LIBUV' in build_info
+    
+    try:
+        if not is_libuv_supported():
+            print("libuv is not supported, disabling USE_LIBUV")
+            os.environ["USE_LIBUV"] = "0"
+    except Exception as e:
+        print(f"Unexpected error occured: {e}")
+        os.environ["USE_LIBUV"] = "0"
+
     if not cfg.debug:
         torch.cuda.set_device(gpu)
         torch.backends.cudnn.benchmark = True
