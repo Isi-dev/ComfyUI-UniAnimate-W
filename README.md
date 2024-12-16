@@ -11,14 +11,24 @@
 
 </div>
 
+## Updates
+
+16/12/2024: Added three nodes for Animate_X: `Repose image with Animate_X` for img2img pose transfer, `Animate image with Animate_X` for img2vid generation, and 'Animate image with Animate_X_Long` for long video generation. 
+Install or Update this repository with the ComfyUI Manager to get these nodes. You will need to download the `animate-x_ckpt.pth` model and place it in 'ComfyUI-UniAnimate-W/checkpoints/' folder to use these nodes. The other four checkpoints required are the same as those used by UniAnimate. 
+You can download the checkpoints here:https://huggingface.co/Shuaishuai0219/Animate-X/tree/main
+The code for Animate_X is almost the same as that for UniAnimate, so I decided to include the Animate_X nodes here rather than creating a new repository. The requirements are also the same.
+You can visit the Animate_X repo via this link: https://github.com/antgroup/animate-x
+
+
+
+09/09/2024: Released a [video](https://youtu.be/Ne-DSBhfg8A) on using the two new nodes for best results 
+
+07/09/2024: Added two nodes: `Animate image with UniAnimate_Long` for long video generation, and `Repose image with UniAnimate` for img2img pose transfer
+
 
 ## Getting Started
 
-The ComfyUI nodes created are `Align & Generate poses for UniAnimate` & `Animate image with UniAnimate`
-
-Update 07/09/2024: Added two nodes: `Animate image with UniAnimate_Long` for long video generation, and `Repose image with UniAnimate` for img2img pose transfer
-
-Update 09/09/2024: Released a [video](https://youtu.be/Ne-DSBhfg8A) on using the two new nodes for best results      
+The ComfyUI nodes created are `Align & Generate poses for UniAnimate` & `Animate image with UniAnimate`    
 
 I used a ComfyUI_windows_portable to test the nodes in a Windows 10 OS with 16GB RAM & 12GB VRAM Nvidia Graphics Card
 
