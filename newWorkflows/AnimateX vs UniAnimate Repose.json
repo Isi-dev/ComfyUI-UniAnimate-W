@@ -1,0 +1,351 @@
+{
+  "last_node_id": 79,
+  "last_link_id": 148,
+  "nodes": [
+    {
+      "id": 78,
+      "type": "PreviewImage",
+      "pos": {
+        "0": 896,
+        "1": 48
+      },
+      "size": {
+        "0": 436.68170166015625,
+        "1": 720.9755249023438
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 147
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 79,
+      "type": "PreviewImage",
+      "pos": {
+        "0": 1379,
+        "1": 48
+      },
+      "size": {
+        "0": 434.6164245605469,
+        "1": 726.2994995117188
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 148
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 77,
+      "type": "ReposeImage",
+      "pos": {
+        "0": 1825,
+        "1": 58
+      },
+      "size": {
+        "0": 352.79998779296875,
+        "1": 174
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 144
+        },
+        {
+          "name": "pose",
+          "type": "IMAGE",
+          "link": 146
+        }
+      ],
+      "outputs": [
+        {
+          "name": "newPose",
+          "type": "IMAGE",
+          "links": [
+            148
+          ],
+          "slot_index": 0,
+          "shape": 3
+        },
+        {
+          "name": "pose",
+          "type": "IMAGE",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ReposeImage"
+      },
+      "widgets_values": [
+        11,
+        "fixed",
+        25,
+        true,
+        512
+      ]
+    },
+    {
+      "id": 10,
+      "type": "LoadImage",
+      "pos": {
+        "0": -327,
+        "1": 74
+      },
+      "size": {
+        "0": 376.3136901855469,
+        "1": 611.115478515625
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            143,
+            144
+          ],
+          "slot_index": 0,
+          "shape": 3
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "slot_index": 1,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "3.jpeg",
+        "image"
+      ]
+    },
+    {
+      "id": 73,
+      "type": "LoadImage",
+      "pos": {
+        "0": 86,
+        "1": 340
+      },
+      "size": {
+        "0": 376.3136901855469,
+        "1": 611.115478515625
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            145,
+            146
+          ],
+          "slot_index": 0,
+          "shape": 3
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "slot_index": 1,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "ComfyUI_temp_zpmgp_00001_.png",
+        "image"
+      ]
+    },
+    {
+      "id": 76,
+      "type": "Animate_X_ReposeImage",
+      "pos": {
+        "0": 531,
+        "1": 59
+      },
+      "size": {
+        "0": 340.20001220703125,
+        "1": 174
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 143
+        },
+        {
+          "name": "pose",
+          "type": "IMAGE",
+          "link": 145
+        }
+      ],
+      "outputs": [
+        {
+          "name": "newPose",
+          "type": "IMAGE",
+          "links": [
+            147
+          ],
+          "slot_index": 0,
+          "shape": 3
+        },
+        {
+          "name": "pose",
+          "type": "IMAGE",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Animate_X_ReposeImage"
+      },
+      "widgets_values": [
+        13,
+        "fixed",
+        25,
+        false,
+        512
+      ]
+    }
+  ],
+  "links": [
+    [
+      143,
+      10,
+      0,
+      76,
+      0,
+      "IMAGE"
+    ],
+    [
+      144,
+      10,
+      0,
+      77,
+      0,
+      "IMAGE"
+    ],
+    [
+      145,
+      73,
+      0,
+      76,
+      1,
+      "IMAGE"
+    ],
+    [
+      146,
+      73,
+      0,
+      77,
+      1,
+      "IMAGE"
+    ],
+    [
+      147,
+      76,
+      0,
+      78,
+      0,
+      "IMAGE"
+    ],
+    [
+      148,
+      77,
+      0,
+      79,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "Inputs",
+      "bounding": [
+        -344,
+        -12,
+        833,
+        980
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "title": "Animate_X_Repose",
+      "bounding": [
+        521,
+        -26,
+        822,
+        805
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "title": "UniAnimate_Repose",
+      "bounding": [
+        1369,
+        -26,
+        819,
+        810
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.8264462809917354,
+      "offset": [
+        513.6792430491253,
+        249.0144835102376
+      ]
+    }
+  },
+  "version": 0.4
+}

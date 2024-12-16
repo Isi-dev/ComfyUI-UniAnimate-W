@@ -1,0 +1,494 @@
+{
+  "last_node_id": 66,
+  "last_link_id": 119,
+  "nodes": [
+    {
+      "id": 59,
+      "type": "VHS_VideoCombine",
+      "pos": {
+        "0": 1397.46533203125,
+        "1": 38.93334197998047
+      },
+      "size": [
+        446.2913818359375,
+        963.4370727539062
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 116
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "meta_batch",
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 8,
+        "loop_count": 0,
+        "filename_prefix": "UniAnimate_vid",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "UniAnimate_vid_00002.mp4",
+            "subfolder": "",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 8
+          },
+          "muted": false
+        }
+      }
+    },
+    {
+      "id": 57,
+      "type": "VHS_VideoCombine",
+      "pos": {
+        "0": 916.9733276367188,
+        "1": 35.546653747558594
+      },
+      "size": [
+        446.2913818359375,
+        963.4370727539062
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 119
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "meta_batch",
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 8,
+        "loop_count": 0,
+        "filename_prefix": "Animate_X_vid",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "Animate_X_vid_00002.mp4",
+            "subfolder": "",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 8
+          },
+          "muted": false
+        }
+      }
+    },
+    {
+      "id": 65,
+      "type": "UniAnimateImageLong",
+      "pos": {
+        "0": 1859,
+        "1": 33
+      },
+      "size": {
+        "0": 428.4000244140625,
+        "1": 318
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 114
+        },
+        {
+          "name": "video",
+          "type": "IMAGE",
+          "link": 115
+        }
+      ],
+      "outputs": [
+        {
+          "name": "video",
+          "type": "IMAGE",
+          "links": [
+            116
+          ],
+          "slot_index": 0,
+          "shape": 3
+        },
+        {
+          "name": "poses",
+          "type": "IMAGE",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UniAnimateImageLong"
+      },
+      "widgets_values": [
+        7,
+        "fixed",
+        30,
+        false,
+        false,
+        1,
+        16,
+        1,
+        4,
+        16,
+        512
+      ]
+    },
+    {
+      "id": 66,
+      "type": "Animate_X_Image_Long",
+      "pos": {
+        "0": 472,
+        "1": 34
+      },
+      "size": {
+        "0": 415.8000183105469,
+        "1": 318
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 117
+        },
+        {
+          "name": "video",
+          "type": "IMAGE",
+          "link": 118
+        }
+      ],
+      "outputs": [
+        {
+          "name": "video",
+          "type": "IMAGE",
+          "links": [
+            119
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "poses",
+          "type": "IMAGE",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Animate_X_Image_Long"
+      },
+      "widgets_values": [
+        7,
+        "fixed",
+        30,
+        false,
+        false,
+        1,
+        16,
+        1,
+        4,
+        16,
+        512
+      ]
+    },
+    {
+      "id": 10,
+      "type": "LoadImage",
+      "pos": {
+        "0": -371.336181640625,
+        "1": 68.29093933105469
+      },
+      "size": {
+        "0": 473.3907470703125,
+        "1": 810.0922241210938
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            114,
+            117
+          ],
+          "slot_index": 0,
+          "shape": 3
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "slot_index": 1,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "ty_woman.jpg",
+        "image"
+      ]
+    },
+    {
+      "id": 58,
+      "type": "VHS_LoadVideo",
+      "pos": {
+        "0": 121.39728546142578,
+        "1": 160.7574920654297
+      },
+      "size": [
+        310.3355712890625,
+        740.8725621217936
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "meta_batch",
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            115,
+            118
+          ],
+          "slot_index": 0,
+          "shape": 3
+        },
+        {
+          "name": "frame_count",
+          "type": "INT",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "video_info",
+          "type": "VHS_VIDEOINFO",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VHS_LoadVideo"
+      },
+      "widgets_values": {
+        "video": "sVidd.mp4",
+        "force_rate": 0,
+        "force_size": "Disabled",
+        "custom_width": 512,
+        "custom_height": 512,
+        "frame_load_cap": 0,
+        "skip_first_frames": 0,
+        "select_every_nth": 2,
+        "choose video to upload": "image",
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "frame_load_cap": 0,
+            "skip_first_frames": 0,
+            "force_rate": 0,
+            "filename": "sVidd.mp4",
+            "type": "input",
+            "format": "video/mp4",
+            "select_every_nth": 2
+          },
+          "muted": false
+        }
+      }
+    }
+  ],
+  "links": [
+    [
+      114,
+      10,
+      0,
+      65,
+      0,
+      "IMAGE"
+    ],
+    [
+      115,
+      58,
+      0,
+      65,
+      1,
+      "IMAGE"
+    ],
+    [
+      116,
+      65,
+      0,
+      59,
+      0,
+      "IMAGE"
+    ],
+    [
+      117,
+      10,
+      0,
+      66,
+      0,
+      "IMAGE"
+    ],
+    [
+      118,
+      58,
+      0,
+      66,
+      1,
+      "IMAGE"
+    ],
+    [
+      119,
+      66,
+      0,
+      57,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "Inputs",
+      "bounding": [
+        -381,
+        -7,
+        823,
+        894
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "title": "Animate_X_Long",
+      "bounding": [
+        462,
+        -40,
+        911,
+        1049
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "title": "UniAnimate_Long",
+      "bounding": [
+        1387,
+        -41,
+        910,
+        1053
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.8264462809917354,
+      "offset": [
+        454.45322914094345,
+        148.86182017855555
+      ]
+    }
+  },
+  "version": 0.4
+}
