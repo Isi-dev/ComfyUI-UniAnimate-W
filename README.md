@@ -13,7 +13,7 @@
 
 ## Updates
 
-16/12/2024: Added three nodes for Animate_X: `Repose image with Animate_X` for img2img pose transfer, `Animate image with Animate_X` for img2vid generation, and 'Animate image with Animate_X_Long` for long video generation. 
+16/12/2024: Added three nodes for Animate_X: `Repose image with Animate_X` for img2img pose transfer, `Animate image with Animate_X` for img2vid generation, and `Animate image with Animate_X_Long` for long video generation. 
 Install or Update this repository with the ComfyUI Manager to get these nodes. You will need to download the `animate-x_ckpt.pth` model and place it in 'ComfyUI-UniAnimate-W/checkpoints/' folder to use these nodes. The other four checkpoints required are the same as those used by UniAnimate. 
 You can download the checkpoints here:https://huggingface.co/Shuaishuai0219/Animate-X/tree/main
 The code for Animate_X is almost the same as that for UniAnimate, so I decided to include the Animate_X nodes here rather than creating a new repository. The requirements are also the same.
