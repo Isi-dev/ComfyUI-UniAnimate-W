@@ -21,7 +21,7 @@ You can visit the Animate_X repo via this link: https://github.com/antgroup/anim
 
 
 
-09/09/2024: Released a [video](https://youtu.be/Ne-DSBhfg8A) on using the two new nodes for best results 
+09/09/2024: Released a [video](https://youtu.be/Ne-DSBhfg8A) on using the two new UniAnimate nodes for best results 
 
 07/09/2024: Added two nodes: `Animate image with UniAnimate_Long` for long video generation, and `Repose image with UniAnimate` for img2img pose transfer
 
