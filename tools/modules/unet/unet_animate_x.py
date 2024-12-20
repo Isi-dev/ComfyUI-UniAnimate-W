@@ -237,7 +237,7 @@ class UNetSD_Animate_X(nn.Module):
 
 
         self.video_compositions = ['image', 'local_image', 'dwpose', 'randomref', 'randomref_pose', 'pose_embedding']
-        self.resolution = [512, 768]
+        self.resolution = config.resolution
 
 
         self.in_dim = in_dim
