@@ -54,12 +54,13 @@ def build_from_config(cfg, registry, **kwargs):
         if req_type_entry is None:
             try:
                 print(f"For Windows users, we explicitly import registry function {req_type} !!!")
-                from tools.inferences.inference_unianimate_entrance import inference_unianimate_entrance
-                from tools.inferences.inference_unianimate_long_entrance import inference_unianimate_long_entrance
+                # from tools.inferences.inference_unianimate_entrance import inference_unianimate_entrance
+                # from tools.inferences.inference_unianimate_long_entrance import inference_unianimate_long_entrance
                 # from tools.modules.diffusions.diffusion_ddim import DiffusionDDIM
                 # from tools.modules.diffusions.diffusion_ddim import DiffusionDDIMLong
                 # from tools.modules.autoencoder import AutoencoderKL
                 # from tools.modules.clip_embedder import FrozenOpenCLIPTextVisualEmbedder
+                # from tools.modules.unet.unet_unianimate import UNetSD_UniAnimate
                 # from tools.modules.unet.unet_unianimate import UNetSD_UniAnimate
 
                 req_type_entry = eval(req_type)
