@@ -200,7 +200,7 @@ class Animate_X_ReposeImage:
     CATEGORY = "image"
 
     def process(self, seed, steps, dontAlignPose, image, pose, resolution_x):
-        cfg_update = Config('configs/UniAnimate_infer.yaml', load=True)
+        cfg_update = Config('configs/Animate_X_infer.yaml', load=True)
         resolution_y = 768
         if resolution_x == 768:
             resolution_y = 1216
@@ -246,7 +246,7 @@ class Animate_X_Image:
     CATEGORY = "image"
 
     def process(self, seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequence, frame_interval, max_frames, resolution_x):
-        cfg_update = Config('configs/UniAnimate_infer.yaml', load=True)
+        cfg_update = Config('configs/Animate_X_infer.yaml', load=True)
         resolution_y = 768
         if resolution_x == 768:
             resolution_y = 1216
@@ -289,7 +289,7 @@ class Animate_X_Image_Long:
     CATEGORY = "image"
 
     def process(self, seed, steps, useFirstFrame, dontAlignPose, image, video, frame_interval, context_size, context_stride, context_overlap, max_frames, resolution_x):
-        cfg_update = Config('configs/UniAnimate_infer_long.yaml', load=True)
+        cfg_update = Config('configs/Animate_X_infer.yaml', load=True)
         resolution_y = 768
         if resolution_x == 768:
             resolution_y = 1216
