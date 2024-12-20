@@ -13,7 +13,7 @@
 
 ## Updates
 
-20/12/2024: Added seperate config and UNET files for Animate-X to solve error raised by [issue #22](https://github.com/Isi-dev/ComfyUI-UniAnimate-W/issues/22)
+20/12/2024: Added seperate config and UNET files for Animate-X to solve error identified in [issue #22](https://github.com/Isi-dev/ComfyUI-UniAnimate-W/issues/22)
 
 17/12/2024: Released a [video](https://youtu.be/OKFf8J-eMIc) comparing Animate_X with UniAnimate 
 
