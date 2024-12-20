@@ -47,7 +47,7 @@ from ...utils.assign_cfg import assign_signle_cfg
 from ...utils.distributed import generalized_all_gather, all_reduce
 from ...utils.video_op import save_i2vgen_video, save_t2vhigen_video_safe, save_video_multiple_conditions_not_gif_horizontal_3col
 from ...tools.modules.autoencoder import get_first_stage_encoding
-from ...utils.registry_class import INFER_ENGINE, MODEL, EMBEDDER, AUTO_ENCODER, DIFFUSION
+from ...utils.registry_class import INFER_ENGINE, MODEL2, EMBEDDER, AUTO_ENCODER, DIFFUSION
 from copy import copy
 
 
@@ -290,7 +290,7 @@ def worker(gpu, seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequ
     if "config" in cfg.UNet:
         cfg.UNet["config"] = cfg
     cfg.UNet["zero_y"] = zero_y
-    model = MODEL.build(cfg.UNet)
+    model = MODEL2.build(cfg.UNet)
 
     current_directory = os.path.dirname(os.path.abspath(__file__))
     parent_directory = os.path.dirname(current_directory)
