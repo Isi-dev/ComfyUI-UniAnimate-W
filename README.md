@@ -13,6 +13,8 @@
 
 ## Updates
 
+20/12/2024: Added seperate config and UNET files for Animate-X to solve error raised by [issue #22](https://github.com/Isi-dev/ComfyUI-UniAnimate-W/issues/22)
+
 17/12/2024: Released a [video](https://youtu.be/OKFf8J-eMIc) comparing Animate_X with UniAnimate 
 
 16/12/2024: Added three nodes and associated workflows for Animate-X: `Repose image with Animate_X` for img2img pose transfer, `Animate image with Animate_X` for img2vid generation, and `Animate image with Animate_X_Long` for long video generation. 
