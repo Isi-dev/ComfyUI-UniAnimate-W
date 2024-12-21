@@ -290,6 +290,8 @@ def worker(gpu, seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequ
     if "config" in cfg.UNet:
         cfg.UNet["config"] = cfg
     cfg.UNet["zero_y"] = zero_y
+    if max_frames > 32:
+        cfg.UNet["seq_len"] = max_frames+1
     model = MODEL2.build(cfg.UNet)
 
     current_directory = os.path.dirname(os.path.abspath(__file__))
