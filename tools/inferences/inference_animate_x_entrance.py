@@ -50,6 +50,7 @@ import cv2
 
 
 # @INFER_ENGINE.register_function()
+# def inference_animate_x_entrance(seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequence, original_driven_video_path, refpose_embeding_key, pose_embedding_key, frame_interval, max_frames, resolution, cfg_update,  **kwargs):
 def inference_animate_x_entrance(seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequence, frame_interval, max_frames, resolution, cfg_update,  **kwargs):
     for k, v in cfg_update.items():
         if isinstance(v, dict) and k in cfg:
@@ -71,9 +72,35 @@ def inference_animate_x_entrance(seed, steps, useFirstFrame, reference_image, re
     
     if cfg.world_size == 1:
         return worker(0, seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequence, frame_interval, max_frames, resolution, cfg, cfg_update)
+        # return worker(0, seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequence, original_driven_video_path, refpose_embeding_key, pose_embedding_key,frame_interval, max_frames, resolution, cfg, cfg_update)
     else:
         return mp.spawn(worker, nprocs=cfg.gpus_per_machine, args=(cfg, cfg_update))
     return cfg
+
+
+# def process_single_pose_embedding_tensor(pose_data):
+#     """
+#     Processes pose embedding data from a tensor.
+#     Assumes `pose_data['bodies']['candidate']` is a tensor of shape (N, 18, 2).
+#     """
+#     # Extract the first 18 poses
+#     bodies = pose_data['bodies']['candidate'][:, :18, :]  
+
+#     # Swap axes to match the desired shape
+#     results = bodies.permute(2, 1, 0)  # Change to shape (2, 18, N)
+#     return results
+
+# def process_single_pose_embedding_katong_tensor(pose_data, index):
+#     """
+#     Processes a single pose embedding for a given index.
+#     Assumes `pose_data['bodies']` is a tensor containing pose data.
+#     """
+#     # Extract the specific body's data up to 18 keypoints
+#     bodies = pose_data['bodies'][index, :18, :]
+
+#     # Swap axes to match the desired shape
+#     results = bodies.permute(1, 0)  # Change to shape (18, 2)
+#     return results
 
 
 def make_masked_images(imgs, masks):
@@ -83,12 +110,27 @@ def make_masked_images(imgs, masks):
         masked_imgs.append(torch.cat([imgs[i] * (1 - mask), (1 - mask)], dim=1))
     return torch.stack(masked_imgs, dim=0)
 
-def load_video_frames(ref_image_tensor, ref_pose_tensor, pose_tensors, train_trans, vit_transforms, train_trans_pose, max_frames=32, frame_interval=1, resolution=[512, 768], get_first_frame=True, vit_resolution=[224, 224]):
+# def load_video_frames(ref_image_tensor, ref_pose_tensor, pose_tensors, original_driven_video_path, refpose_embeding_key, pose_embedding_key,train_trans, vit_transforms, train_trans_pose, max_frames=32, frame_interval=1, resolution=[512, 768], get_first_frame=True, vit_resolution=[224, 224]):
+def load_video_frames(ref_image_tensor, ref_pose_tensor, pose_tensors, train_trans, vit_transforms, train_trans_pose, max_frames=32, frame_interval=1, resolution=[512, 768], get_first_frame=True, vit_resolution=[224, 224]):    
+    # pose_embedding_dim = 18
+    
     for _ in range(5):
         try:
             num_poses = len(pose_tensors)
             numpyFrames = []
             numpyPoses = []
+
+            # original_driven_video_all = {}
+            # original_driven_video_frame_all = {}
+            # pose_embedding_all = {}
+
+            # try:
+            #     ref_pose_embedding = process_single_pose_embedding_tensor(refpose_embeding_key)
+
+            # except:
+            #     ref_pose_embedding = process_single_pose_embedding_katong_tensor(refpose_embeding_key, 0)
+
+            # print(f'i_frame is {ref_pose_embedding}')
             
             # Convert tensors to numpy arrays and prepare lists
             for i in range(num_poses):
@@ -99,6 +141,14 @@ def load_video_frames(ref_image_tensor, ref_pose_tensor, pose_tensors, train_tra
 
                 pose = pose_tensors[i].squeeze(0).cpu().numpy()  # Convert to numpy array
                 numpyPoses.append(pose)
+
+                # original_driven_video_frame = original_driven_video_path.squeeze(0).cpu().numpy()
+                # original_driven_video_all.append(original_driven_video_frame)
+
+                # try:
+                #     pose_embedding_all[i] = process_single_pose_embedding_tensor(pose_embedding_key) # (2, 128)
+                # except:
+                #     pose_embedding_all[i] = process_single_pose_embedding_katong_tensor(pose_embedding_key, 0) # (2, 128)
 
             # Convert reference pose tensor to numpy array
             pose_ref = ref_pose_tensor.squeeze(0).cpu().numpy()  # Convert to numpy array
@@ -120,6 +170,9 @@ def load_video_frames(ref_image_tensor, ref_pose_tensor, pose_tensors, train_tra
 
             frame_list = []
             dwpose_list = []
+            # original_driven_video_list = []
+            # pose_embedding_list = []
+
 
             print(f'end_frame is ({end_frame})')
 
@@ -127,6 +180,8 @@ def load_video_frames(ref_image_tensor, ref_pose_tensor, pose_tensors, train_tra
                 if i_index < len(numpyFrames):  # Check index within bounds
                     i_frame = numpyFrames[i_index]
                     i_dwpose = numpyPoses[i_index]
+
+                    # i_key = list(numpyFrames.keys())[i_index]
 
                     # Convert numpy arrays to PIL images
                     # i_frame = np.clip(i_frame, 0, 1)
@@ -138,11 +193,24 @@ def load_video_frames(ref_image_tensor, ref_pose_tensor, pose_tensors, train_tra
                     i_dwpose = Image.fromarray((i_dwpose * 255).astype(np.uint8))
                     i_dwpose = i_dwpose.convert('RGB')
 
+                    # i_original_driven_video = original_driven_video_all[i_index]
+                    # i_original_driven_video = (i_original_driven_video - i_original_driven_video.min()) / (i_original_driven_video.max() - i_original_driven_video.min()) #Trying this in place of clip
+                    # i_original_driven_video = Image.fromarray((i_original_driven_video * 255).astype(np.uint8))
+                    # i_original_driven_video = i_original_driven_video.convert('RGB')
+
+                    # i_pose_embedding = pose_embedding_all[i_key]
+
+
                     # if i_index == 0:
                     #     print(f'i_frame is ({np.array(i_frame)})')
 
                     frame_list.append(i_frame)
                     dwpose_list.append(i_dwpose)
+
+                    # original_driven_video_list.append(i_original_driven_video)
+
+                    # pose_embedding_list.append(i_pose_embedding)
+
 
             if frame_list:
                 # random_ref_frame = np.clip(numpyFrames[0], 0, 1)
@@ -161,13 +229,28 @@ def load_video_frames(ref_image_tensor, ref_pose_tensor, pose_tensors, train_tra
                 vit_frame = vit_transforms(ref_frame)
                 random_ref_frame_tmp = train_trans_pose(random_ref_frame)
                 random_ref_dwpose_tmp = train_trans_pose(random_ref_dwpose)
+
+                
+                # original_driven_video_data_tmp = torch.stack([vit_transforms(ss) for ss in original_driven_video_list], dim=0)
+
+                
+                # ref_pose_embedding_tmp = torch.from_numpy(ref_pose_embedding)
+
                 misc_data_tmp = torch.stack([train_trans_pose(ss) for ss in frame_list], dim=0)
                 video_data_tmp = torch.stack([train_trans(ss) for ss in frame_list], dim=0)
                 dwpose_data_tmp = torch.stack([train_trans_pose(ss) for ss in dwpose_list], dim=0)
 
+                # pose_embedding_tmp = torch.stack([torch.from_numpy(ss) for ss in pose_embedding_list], dim=0)
+
                 # Initialize tensors
                 video_data = torch.zeros(max_frames, 3, resolution[1], resolution[0])
                 dwpose_data = torch.zeros(max_frames, 3, resolution[1], resolution[0])
+
+                # original_driven_video_data = torch.zeros(max_frames, 3, 224, 224)
+
+                # pose_embedding = torch.zeros(max_frames, 2, pose_embedding_dim)
+                # ref_pose_embedding = torch.zeros(max_frames, 2, pose_embedding_dim)
+
                 misc_data = torch.zeros(max_frames, 3, resolution[1], resolution[0])
                 random_ref_frame_data = torch.zeros(max_frames, 3, resolution[1], resolution[0])
                 random_ref_dwpose_data = torch.zeros(max_frames, 3, resolution[1], resolution[0])
@@ -176,9 +259,17 @@ def load_video_frames(ref_image_tensor, ref_pose_tensor, pose_tensors, train_tra
                 video_data[:len(frame_list), ...] = video_data_tmp
                 misc_data[:len(frame_list), ...] = misc_data_tmp
                 dwpose_data[:len(frame_list), ...] = dwpose_data_tmp
+
+                # original_driven_video_data[:len(frame_list), ...] = original_driven_video_data_tmp
+
+                # pose_embedding[:len(frame_list), ...] = pose_embedding_tmp
+
                 random_ref_frame_data[:, ...] = random_ref_frame_tmp
                 random_ref_dwpose_data[:, ...] = random_ref_dwpose_tmp
 
+                # ref_pose_embedding[:,...] = ref_pose_embedding_tmp
+
+                # return vit_frame, video_data, misc_data, dwpose_data, random_ref_frame_data, random_ref_dwpose_data, pose_embedding, ref_pose_embedding, original_driven_video_data
                 return vit_frame, video_data, misc_data, dwpose_data, random_ref_frame_data, random_ref_dwpose_data
 
         except Exception as e:
@@ -187,8 +278,10 @@ def load_video_frames(ref_image_tensor, ref_pose_tensor, pose_tensors, train_tra
             continue
     
     return None, None, None, None, None, None  # Return default values if all attempts fail
+    # return None, None, None, None, None, None, None, None, None
 
 
+# def worker(gpu, seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequence, original_driven_video_path, refpose_embeding_key, pose_embedding_key,frame_interval, max_frames, resolution, cfg, cfg_update):
 def worker(gpu, seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequence, frame_interval, max_frames, resolution, cfg, cfg_update):
     '''
     Inference worker for each gpu
@@ -285,6 +378,8 @@ def worker(gpu, seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequ
     if "config" in cfg.UNet:
         cfg.UNet["config"] = cfg
     cfg.UNet["zero_y"] = zero_y
+    if max_frames > 32:
+        cfg.UNet["seq_len"] = max_frames+1
     model = MODEL2.build(cfg.UNet)
     # Here comes the UniAnimate model
     # inferences folder
@@ -342,12 +437,18 @@ def worker(gpu, seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequ
 
     
     # initialize reference_image, pose_sequence, frame_interval, max_frames, resolution_x,
-    vit_frame, video_data, misc_data, dwpose_data, random_ref_frame_data, random_ref_dwpose_data = load_video_frames(reference_image, ref_pose, pose_sequence, train_trans, vit_transforms, train_trans_pose, max_frames, frame_interval, resolution)
+    # vit_frame, video_data, misc_data, dwpose_data, random_ref_frame_data, random_ref_dwpose_data, pose_embedding, ref_pose_embedding, original_driven_video_data = load_video_frames(reference_image, ref_pose, pose_sequence, original_driven_video_path, refpose_embeding_key, pose_embedding_key,train_trans, vit_transforms, train_trans_pose, max_frames, frame_interval, resolution)
+    vit_frame, video_data, misc_data, dwpose_data, random_ref_frame_data, random_ref_dwpose_data = load_video_frames(reference_image, ref_pose, pose_sequence,train_trans, vit_transforms, train_trans_pose, max_frames, frame_interval, resolution)
     misc_data = misc_data.unsqueeze(0).to(gpu)
     vit_frame = vit_frame.unsqueeze(0).to(gpu)
     dwpose_data = dwpose_data.unsqueeze(0).to(gpu) 
     random_ref_frame_data = random_ref_frame_data.unsqueeze(0).to(gpu)
     random_ref_dwpose_data = random_ref_dwpose_data.unsqueeze(0).to(gpu)
+
+    # pose_embedding = pose_embedding.unsqueeze(0).to(gpu)
+    # ref_pose_embedding = ref_pose_embedding[0:1].unsqueeze(0).to(gpu)
+
+    # pose_embedding = torch.cat([ref_pose_embedding, pose_embedding], dim = 1)
 
     
 
@@ -412,6 +513,15 @@ def worker(gpu, seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequ
                 vit_frame = vit_frame.squeeze(1)
                 y_visual = clip_encoder.encode_image(vit_frame).unsqueeze(1) # [60, 1024]
                 y_visual0 = y_visual.clone()
+
+
+        # batch_size, seq_len = original_driven_video_data.shape[0], original_driven_video_data.shape[1]
+
+        # original_driven_video_data = original_driven_video_data.reshape(batch_size*seq_len,3,224,224)
+        # original_driven_video_data_embedding = clip_encoder.encode_image(original_driven_video_data).unsqueeze(1) # [60, 1024]
+        
+        # print("original_driven_video_data_embedding.shape: ", original_driven_video_data_embedding.shape)
+        # original_driven_video_data_embedding = original_driven_video_data_embedding.clone()
     
     # print(torch.get_default_dtype())
 
@@ -445,6 +555,7 @@ def worker(gpu, seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequ
         # construct model inputs (CFG)
         full_model_kwargs=[{
                                     'y': None,
+                                    # 'pose_embeddings': [pose_embedding, original_driven_video_data_embedding],
                                     "local_image": None if len(image_local) == 0 else image_local[:],
                                     'image': None if len(y_visual) == 0 else y_visual0[:],
                                     'dwpose': None if len(dwpose_data) == 0 else dwpose_data[:],
@@ -456,6 +567,7 @@ def worker(gpu, seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequ
                                     'image': None,
                                     'randomref': None,
                                     'dwpose': None, 
+                                    # "pose_embeddings": None,
                                     }]
 
         # for visualization
@@ -463,6 +575,7 @@ def worker(gpu, seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequ
                                     'y': None,
                                     "local_image": None if len(image_local) == 0 else image_local_clone[:],
                                     'image': None,
+                                    # 'pose_embeddings': [pose_embedding, original_driven_video_data_embedding],
                                     'dwpose': None if len(dwpose_data_clone) == 0 else dwpose_data_clone[:],
                                     'randomref': None if len(random_ref_frame) == 0 else random_ref_frame_clone[:, :3],
                                     }, 
@@ -472,15 +585,18 @@ def worker(gpu, seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequ
                                     'image': None,
                                     'randomref': None,
                                     'dwpose': None, 
+                                    # "pose_embeddings": None, 
                                     }]
 
         
         partial_keys = [
+                # ['image', 'randomref', "dwpose","pose_embeddings"],
                 ['image', 'randomref', "dwpose"],
             ]
 
         if useFirstFrame:
             partial_keys = [
+                # ['image', 'local_image', "dwpose","pose_embeddings"],
                 ['image', 'local_image', "dwpose"],
             ]
             print('Using First Frame Conditioning!')
