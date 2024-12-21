@@ -7,6 +7,7 @@ from .tools.inferences import inference_animate_x_entrance
 from .tools.inferences import inference_animate_x_long_entrance
 from . import run_align_pose
 from . import run_align_posev2
+from . import run_align_pose_Animate_X
 from nodes import MAX_RESOLUTION
 
 # from tools import *
@@ -206,6 +207,7 @@ class Animate_X_ReposeImage:
             resolution_y = 1216
         resolution = [resolution_x, resolution_y]
         
+        # pose_i, refPose, pose_embeding, refpose_embeding = run_align_pose_Animate_X.mp_main(dontAlignPose, image, pose)
         pose_i, refPose = run_align_posev2.mp_main(dontAlignPose, image, pose)
 
         # print(f"shape of image: {image.shape}")
@@ -213,6 +215,7 @@ class Animate_X_ReposeImage:
 
 
         print("Ready for inference.")
+        # frame = inference_animate_x_entrance(seed, steps, False, image, refPose, pose_i, pose, refpose_embeding, pose_embeding, 1, 1, resolution, cfg_update=cfg_update.cfg_dict)
         frame = inference_animate_x_entrance(seed, steps, False, image, refPose, pose_i, 1, 1, resolution, cfg_update=cfg_update.cfg_dict)
         # mask_template = torch.zeros((1, resolution_y, resolution_x), dtype=torch.float32)
         # masks = [mask_template.clone() for _ in range(len(pose_i))]
@@ -289,7 +292,7 @@ class Animate_X_Image_Long:
     CATEGORY = "image"
 
     def process(self, seed, steps, useFirstFrame, dontAlignPose, image, video, frame_interval, context_size, context_stride, context_overlap, max_frames, resolution_x):
-        cfg_update = Config('configs/Animate_X_infer.yaml', load=True)
+        cfg_update = Config('configs/Animate_X_infer_long.yaml', load=True)
         resolution_y = 768
         if resolution_x == 768:
             resolution_y = 1216
