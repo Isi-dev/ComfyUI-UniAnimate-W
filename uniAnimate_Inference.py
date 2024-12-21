@@ -7,7 +7,7 @@ from .tools.inferences import inference_animate_x_entrance
 from .tools.inferences import inference_animate_x_long_entrance
 from . import run_align_pose
 from . import run_align_posev2
-from . import run_align_pose_Animate_X
+# from . import run_align_pose_Animate_X
 from nodes import MAX_RESOLUTION
 
 # from tools import *
