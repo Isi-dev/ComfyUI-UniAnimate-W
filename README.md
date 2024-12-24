@@ -13,6 +13,8 @@
 
 ## Updates
 
+24/12/2024: Added a new node for dwpose extraction named `Generate dwpose`. The advantage of this node over the `Align & Generate poses for UniAnimate`node is that it does not throw an error when the target image cannot be read by the DWposeDetector, allowing the generation to proceed. But note that both nodes will throw a 'cannot convert float infinity to integer' error if the driving video or image cannot be read. The downside is that the output dwpose is not aligned with the target image like the `Align & Generate poses for UniAnimate`node attempts to do. To achieve a result where body proportions are maintained, you must manually align the person in the target image with the person in the driving video or image before uploading them. Also note that the `Generate dwpose` and `Align & Generate poses for UniAnimate`nodes are only needed by the `Animate image with Animate_X` and `Animate image with UniAnimate` nodes. You can achieve similar effects of the `Generate dwpose` and `Align & Generate poses for UniAnimate` nodes in the other nodes by setting the dontAlignPose parameter to True and False respectively.
+
 20/12/2024: Added seperate config and UNET files for Animate-X to solve error identified in [issue #22](https://github.com/Isi-dev/ComfyUI-UniAnimate-W/issues/22)
 
 17/12/2024: Released a [video](https://youtu.be/OKFf8J-eMIc) comparing Animate_X with UniAnimate 
