@@ -694,10 +694,11 @@ def mp_main(dontAlignPose, reference_image, video):
 
     dwpose_images = []
 
-    for i in range(len(results_vis)):
-        dwpose_woface, _ = draw_pose(results_vis[i], H=768, W=512)
+    for i in range(len(results_vis)):     
         if dontAlignPose:
             dwpose_woface, _ = draw_pose(vid_not_aligned[i], H=768, W=512)
+        else:
+            dwpose_woface, _ = draw_pose(results_vis[i], H=768, W=512)
         dwpose_tensor = torch.from_numpy(dwpose_woface).permute(2, 0, 1).unsqueeze(0).float()  # Convert to tensor and CHW format
         dwpose_tensor = dwpose_tensor.permute(0, 2, 3, 1)
         dwpose_images.append(dwpose_tensor)
