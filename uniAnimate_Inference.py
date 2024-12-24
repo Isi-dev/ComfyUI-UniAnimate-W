@@ -8,6 +8,7 @@ from .tools.inferences import inference_animate_x_long_entrance
 from . import run_align_pose
 from . import run_align_posev2
 # from . import run_align_pose_Animate_X
+from . import original_run_align_pose_animate_X
 from nodes import MAX_RESOLUTION
 
 # from tools import *
@@ -20,7 +21,7 @@ class UniAnimateImage:
         return {
             "required": {
                 "seed": ("INT", {"default": 11, "min": 0, "max": MAX_RESOLUTION, "step": 1}),
-                "steps": ("INT", {"default": 30, "min": 25, "max": 50, "step": 1}),
+                "steps": ("INT", {"default": 30, "min": 10, "max": 50, "step": 1}),
                 "useFirstFrame": ("BOOLEAN", { "default": False }),
                 "reference_image": ("IMAGE",),  # single image
                 "ref_pose": ("IMAGE",),  # single image
@@ -78,6 +79,32 @@ class Gen_align_pose:
         return (refPose, poses)
     
 
+class Gen_align_pose2:
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "reference_image": ("IMAGE",),  # single image
+                "video": ("IMAGE",),   # video
+            }
+        }
+
+    RETURN_TYPES = ("IMAGE", "IMAGE")
+    RETURN_NAMES = ("ref_pose", "pose_seq")
+    FUNCTION = "process"
+    CATEGORY = "image"
+
+    def process(self, reference_image, video):    
+        if torch.cuda.is_available():
+            print(f"CUDA version: {torch.version.cuda}")
+            print(f"CUDNN version: {torch.backends.cudnn.version()}")
+            print(f"Device name: {torch.cuda.get_device_name(0)}")
+        else:
+            print("CUDA is not available")
+        poses, refPose = original_run_align_pose_animate_X.mp_main(reference_image, video)
+        return (refPose, poses)
+    
+
 
 class UniAnimateImageLong:
     @classmethod
@@ -85,7 +112,7 @@ class UniAnimateImageLong:
         return {
             "required": {
                 "seed": ("INT", {"default": 7, "min": 0, "max": MAX_RESOLUTION, "step": 1}),
-                "steps": ("INT", {"default": 30, "min": 2, "max": 50, "step": 1}),
+                "steps": ("INT", {"default": 30, "min": 10, "max": 50, "step": 1}),
                 "useFirstFrame": ("BOOLEAN", { "default": False }),
                 "dontAlignPose": ("BOOLEAN", { "default": False }),
                 "image": ("IMAGE",),  # single image
@@ -143,7 +170,7 @@ class ReposeImage:
         return {
             "required": {
                 "seed": ("INT", {"default": 11, "min": 0, "max": MAX_RESOLUTION, "step": 1}),
-                "steps": ("INT", {"default": 30, "min": 20, "max": 50, "step": 1}),
+                "steps": ("INT", {"default": 30, "min": 10, "max": 50, "step": 1}),
                 "dontAlignPose": ("BOOLEAN", { "default": False }),
                 "image": ("IMAGE",),
                 "pose": ("IMAGE",), 
@@ -187,7 +214,7 @@ class Animate_X_ReposeImage:
         return {
             "required": {
                 "seed": ("INT", {"default": 13, "min": 0, "max": MAX_RESOLUTION, "step": 1}),
-                "steps": ("INT", {"default": 25, "min": 20, "max": 50, "step": 1}),
+                "steps": ("INT", {"default": 25, "min": 10, "max": 50, "step": 1}),
                 "dontAlignPose": ("BOOLEAN", { "default": False }),
                 "image": ("IMAGE",),
                 "pose": ("IMAGE",), 
@@ -232,7 +259,7 @@ class Animate_X_Image:
         return {
             "required": {
                 "seed": ("INT", {"default": 13, "min": 0, "max": MAX_RESOLUTION, "step": 1}),
-                "steps": ("INT", {"default": 30, "min": 25, "max": 50, "step": 1}),
+                "steps": ("INT", {"default": 30, "min": 10, "max": 50, "step": 1}),
                 "useFirstFrame": ("BOOLEAN", { "default": False }),
                 "reference_image": ("IMAGE",),  # single image
                 "ref_pose": ("IMAGE",),  # single image
@@ -272,7 +299,7 @@ class Animate_X_Image_Long:
         return {
             "required": {
                 "seed": ("INT", {"default": 13, "min": 0, "max": MAX_RESOLUTION, "step": 1}),
-                "steps": ("INT", {"default": 30, "min": 2, "max": 50, "step": 1}),
+                "steps": ("INT", {"default": 30, "min": 10, "max": 50, "step": 1}),
                 "useFirstFrame": ("BOOLEAN", { "default": False }),
                 "dontAlignPose": ("BOOLEAN", { "default": False }),
                 "image": ("IMAGE",),  # single image
@@ -327,6 +354,7 @@ class Animate_X_Image_Long:
 NODE_CLASS_MAPPINGS = {
     "UniAnimateImage" : UniAnimateImage,
     "Gen_align_pose" : Gen_align_pose,
+    "Gen_align_pose2" : Gen_align_pose2,
     "UniAnimateImageLong" : UniAnimateImageLong,
     "ReposeImage" : ReposeImage,
     "Animate_X_ReposeImage" : Animate_X_ReposeImage,
@@ -338,6 +366,7 @@ NODE_CLASS_MAPPINGS = {
 NODE_DISPLAY_NAME_MAPPINGS = {
     "UniAnimateImage" :"Animate image with UniAnimate",
     "Gen_align_pose" :"Align & Generate poses for UniAnimate",
+    "Gen_align_pose2" :"Generate dwpose",
     "UniAnimateImageLong" :"Animate image with UniAnimate_Long",
     "ReposeImage" :"Repose image with UniAnimate",
     "Animate_X_ReposeImage" :"Repose image with Animate_X",
