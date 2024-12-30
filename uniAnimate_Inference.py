@@ -5,9 +5,10 @@ from .tools.inferences import inference_unianimate_entrance
 from .tools.inferences import inference_unianimate_long_entrance
 from .tools.inferences import inference_animate_x_entrance
 from .tools.inferences import inference_animate_x_long_entrance
+from .tools.inferences import inference_animate_x_entrance_v2
 from . import run_align_pose
 from . import run_align_posev2
-# from . import run_align_pose_Animate_X
+from . import run_align_pose_Animate_X
 from . import original_run_align_pose_animate_X
 from nodes import MAX_RESOLUTION
 
@@ -348,7 +349,89 @@ class Animate_X_Image_Long:
         frames = inference_animate_x_long_entrance(seed, steps, useFirstFrame, image, refPose, pose_sequence, frame_interval, context_size, context_stride, context_overlap, max_frames, resolution, cfg_update=cfg_update.cfg_dict)
 
         return (frames, pose_sequence)
+    
 
+
+class Animate_X_ReposeImage_v2:
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "seed": ("INT", {"default": 13, "min": 0, "max": MAX_RESOLUTION, "step": 1}),
+                "steps": ("INT", {"default": 25, "min": 10, "max": 50, "step": 1}),       
+                "dontAlignPose": ("BOOLEAN", { "default": True }),
+                "image": ("IMAGE",), 
+                "pose": ("IMAGE",),      
+                "resolution_x": ("INT", {"default": 512, "min": 512, "max": 768, "step": 256}),
+            }
+        }
+
+    RETURN_TYPES = ("IMAGE", "IMAGE")
+    RETURN_NAMES = ("newPose", "pose")
+    FUNCTION = "process"
+    CATEGORY = "image"
+
+    def process(self, seed, steps, dontAlignPose, image, pose, resolution_x):
+        cfg_update = Config('configs/Animate_X_infer.yaml', load=True)
+        resolution_y = 768
+        if resolution_x == 768:
+            resolution_y = 1216
+        resolution = [resolution_x, resolution_y]
+        
+        # pose_i, refPose, pose_embeding, refpose_embeding = run_align_pose_Animate_X.mp_main(dontAlignPose, image, pose)
+        pose_i, refPose, pose_embeding, refpose_embeding = run_align_pose_Animate_X.mp_main(dontAlignPose, image, pose)
+
+        # print(f"shape of image: {image.shape}")
+        # print(f"shape of pose: {pose.shape}")
+
+
+        print("Ready for inference.")
+        frame = inference_animate_x_entrance_v2(seed, steps, False, image, refPose, pose_i, pose, refpose_embeding, pose_embeding, 1, 1, resolution, cfg_update=cfg_update.cfg_dict)
+
+        return (frame, pose_i)
+    
+
+
+class Animate_X_Image_v2:
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "seed": ("INT", {"default": 13, "min": 0, "max": MAX_RESOLUTION, "step": 1}),
+                "steps": ("INT", {"default": 25, "min": 10, "max": 50, "step": 1}),
+                "useFirstFrame": ("BOOLEAN", { "default": True }),
+                "dontAlignPose": ("BOOLEAN", { "default": True }),
+                "image": ("IMAGE",), 
+                "video": ("IMAGE",), 
+                "frame_interval": ("INT", {"default": 1, "min": 1, "max": 8, "step": 1}),
+                "max_frames": ("INT", {"default": 32, "min": 2, "max": 64, "step": 1}),
+                "resolution_x": ("INT", {"default": 512, "min": 512, "max": 768, "step": 256}),
+            }
+        }
+
+    RETURN_TYPES = ("IMAGE", "IMAGE")
+    RETURN_NAMES = ("video", "poses")
+    FUNCTION = "process"
+    CATEGORY = "image"
+
+    def process(self, seed, steps, useFirstFrame, dontAlignPose, image, video, frame_interval, max_frames, resolution_x):
+        cfg_update = Config('configs/Animate_X_infer.yaml', load=True)
+        resolution_y = 768
+        if resolution_x == 768:
+            resolution_y = 1216
+        resolution = [resolution_x, resolution_y]
+        
+        # pose_i, refPose, pose_embeding, refpose_embeding = run_align_pose_Animate_X.mp_main(dontAlignPose, image, pose)
+        pose_i, refPose, pose_embeding, refpose_embeding = run_align_pose_Animate_X.mp_main(dontAlignPose, image, video)
+
+        # print(f"shape of image: {image.shape}")
+        # print(f"shape of pose: {pose.shape}")
+
+
+        print("Ready for inference.")
+        frame = inference_animate_x_entrance_v2(seed, steps, useFirstFrame, image, refPose, pose_i, video, refpose_embeding, pose_embeding, frame_interval, max_frames, resolution, cfg_update=cfg_update.cfg_dict)
+
+        return (frame, pose_i)
 
 
 NODE_CLASS_MAPPINGS = {
@@ -358,8 +441,10 @@ NODE_CLASS_MAPPINGS = {
     "UniAnimateImageLong" : UniAnimateImageLong,
     "ReposeImage" : ReposeImage,
     "Animate_X_ReposeImage" : Animate_X_ReposeImage,
+    "Animate_X_ReposeImage_v2" : Animate_X_ReposeImage_v2,
     "Animate_X_Image" : Animate_X_Image,
     "Animate_X_Image_Long" : Animate_X_Image_Long,
+    "Animate_X_Image_v2" : Animate_X_Image_v2,
     
 }
 
@@ -370,7 +455,9 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "UniAnimateImageLong" :"Animate image with UniAnimate_Long",
     "ReposeImage" :"Repose image with UniAnimate",
     "Animate_X_ReposeImage" :"Repose image with Animate_X",
+    "Animate_X_ReposeImage_v2" :"Repose image with Animate_X_v2",
     "Animate_X_Image" : "Animate image with Animate_X",
     "Animate_X_Image_Long" : "Animate image with Animate_X_Long",
+    "Animate_X_Image_v2" : "Animate image with Animate_X_v2",
     
 }
