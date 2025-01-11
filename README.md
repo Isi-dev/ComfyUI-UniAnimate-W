@@ -94,12 +94,14 @@ Or move them via your command line interface:
 python mv ./checkpoints/iic/unianimate/* ./checkpoints/
 
 ```
+You can manually download the unianimate checkpoint from here: https://huggingface.co/camenduru/unianimate/tree/main
 
 All the models should be in the  '\Path-to-UniAnimate-W\checkpoints' folder as follows:
 
 
 ```
 ./checkpoints/
+|---- animate-x_ckpt.pth
 |---- dw-ll_ucoco_384.onnx
 |---- open_clip_pytorch_model.bin
 |---- unianimate_16f_32f_non_ema_223000.pth 
@@ -119,7 +121,7 @@ You can now upload the workflow in your '\Path-to-UniAnimate-W\' folder which is
 
 - > You can also generate a video first, and then upload the last frame of the video as a pic to generate the next frames with `useFirstFrame` set to true in the `Align & Generate poses for UniAnimate` node.
 
-- > Generating 32 frames of video with a resolution of [512, 768] usually takes about 7 minutes.
+- > Generating 32 frames of video with a resolution of [512, 768] usually takes about 7 minutes for unianimate & 8 minutes for animate-x.
 
 You can also change the pose of an image to that of another image as shown below.
 
@@ -138,4 +140,4 @@ If you find this project helpful, you can support me here:
 
 ## Disclaimer
  
-I am not responsible for any user-generated content. Users are fully responsible for their actions when using these nodes and the generative model. Neither I nor the contributors to the UniAnimate project have any legal affiliation with or accountability for users' behaviors. It is crucial to use these nodes and the generative model responsibly, following both ethical and legal standards.
+I am not responsible for any user-generated content. Users are fully responsible for their actions when using these nodes and the generative models. Neither I nor the contributors to the UniAnimate and Animate-x projects have any legal affiliation with or accountability for users' behaviors. It is crucial to use these nodes and the generative model responsibly, following both ethical and legal standards.
