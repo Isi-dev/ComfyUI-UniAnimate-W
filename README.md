@@ -8,7 +8,7 @@
 ## ComfyUi-windows implementation for the image animation projects: UniAnimate & Animate-X
 [🎨 UniAnimate Project Page](https://unianimate.github.io/)
 
-[🎨 Animate-x Project Page](https://lucaria-academy.github.io/Animate-X/))
+[🎨 Animate-x Project Page](https://lucaria-academy.github.io/Animate-X/)
 </div>
 
 ## Updates
