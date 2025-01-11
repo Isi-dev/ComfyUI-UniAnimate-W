@@ -140,4 +140,4 @@ If you find this project helpful, you can support me here:
 
 ## Disclaimer
  
-I am not responsible for any user-generated content. Users are fully responsible for their actions when using these nodes and the generative models. Neither I nor the contributors to the UniAnimate and Animate-x projects have any legal affiliation with or accountability for users' behaviors. It is crucial to use these nodes and the generative model responsibly, following both ethical and legal standards.
+I am not responsible for any user-generated content. Users are fully responsible for their actions when using these nodes and the generative models. Neither I nor the contributors to the UniAnimate and Animate-x projects have any legal affiliation with or accountability for users' behaviors. It is crucial to use these nodes and the generative models responsibly, following both ethical and legal standards.
