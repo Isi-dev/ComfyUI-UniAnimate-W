@@ -5,7 +5,7 @@
 
 <img src="gif.gif" />
 
-## ComfyUi-windows implementation for the image animation projects:-> UniAnimate & Animate-X
+## ComfyUi-windows implementation for the image animation projects: UniAnimate & Animate-X
 [🎨 UniAnimate Project Page](https://unianimate.github.io/)
 
 [🎨 Animate-x Project Page](https://lucaria-academy.github.io/Animate-X/))
