@@ -5,10 +5,10 @@
 
 <img src="gif.gif" />
 
-## ComfyUi-windows implementation for the image animation project -> UniAnimate: Taming Unified Video Diffusion Models for Consistent Human Image Animation
-
+## ComfyUi-windows implementation for the image animation projects:-> UniAnimate & Animate-X
 [🎨 UniAnimate Project Page](https://unianimate.github.io/)
 
+[🎨 Animate-x Project Page](https://lucaria-academy.github.io/Animate-X/))
 </div>
 
 ## Updates
