@@ -3,11 +3,11 @@
 
 <div align="center">
 
-UniAnimate
+<h2>UniAnimate</h2>
 <img src="gif.gif" />
 
-Animate-x
-<img src="catDanceGif.gif" />
+<h2>Animate-X</h2>
+<img src="catDanceGif.gif" width='1152' height='768' />
 
 ## ComfyUI-Windows implementation of the image animation projects: UniAnimate & Animate-X
 [🎨 UniAnimate Project Page](https://unianimate.github.io/)
