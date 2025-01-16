@@ -28,7 +28,7 @@ class UniAnimateImage:
                 "ref_pose": ("IMAGE",),  # single image
                 "pose_sequence": ("IMAGE",),   # Batch of pose images
                 "frame_interval": ("INT", {"default": 1, "min": 1, "max": 8, "step": 1}),
-                "max_frames": ("INT", {"default": 32, "min": 1, "max": 64, "step": 1}),
+                "max_frames": ("INT", {"default": 32, "min": 1, "max": 1024, "step": 1}),
                 "resolution_x": ("INT", {"default": 512, "min": 512, "max": 768, "step": 256}),
             }
         }
@@ -266,7 +266,7 @@ class Animate_X_Image:
                 "ref_pose": ("IMAGE",),  # single image
                 "pose_sequence": ("IMAGE",),   # Batch of pose images
                 "frame_interval": ("INT", {"default": 1, "min": 1, "max": 8, "step": 1}),
-                "max_frames": ("INT", {"default": 32, "min": 2, "max": 64, "step": 1}),
+                "max_frames": ("INT", {"default": 32, "min": 2, "max": 1024, "step": 1}),
                 "resolution_x": ("INT", {"default": 512, "min": 512, "max": 768, "step": 256}),
             }
         }
@@ -404,7 +404,7 @@ class Animate_X_Image_v2:
                 "image": ("IMAGE",), 
                 "video": ("IMAGE",), 
                 "frame_interval": ("INT", {"default": 1, "min": 1, "max": 8, "step": 1}),
-                "max_frames": ("INT", {"default": 32, "min": 2, "max": 64, "step": 1}),
+                "max_frames": ("INT", {"default": 32, "min": 2, "max": 1024, "step": 1}),
                 "resolution_x": ("INT", {"default": 512, "min": 512, "max": 768, "step": 256}),
             }
         }
