@@ -17,7 +17,7 @@
 
 ## Updates
 
-28/01/2025: You can now download all the checkpoints needed to run UniAnimate & Animate-X here: https://huggingface.co/Isi99999/UniAnimate_and_Animate-X_Models/tree/main
+28/01/2025: You can now download all the checkpoints needed to run UniAnimate & Animate-X [here](https://huggingface.co/Isi99999/UniAnimate_and_Animate-X_Models/tree/main).
 
 18/01/2025: Released a [video](https://youtu.be/FpxT9EdphOE) to help users learn how to address pose adherence issues in Animate-X with a simple workaround.
 
