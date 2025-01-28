@@ -17,6 +17,8 @@
 
 ## Updates
 
+28/01/2025: You can now download all the checkpoints needed to run UniAnimate & Animate-X here: https://huggingface.co/Isi99999/UniAnimate_and_Animate-X_Models/tree/main
+
 18/01/2025: Released a [video](https://youtu.be/FpxT9EdphOE) to help users learn how to address pose adherence issues in Animate-X with a simple workaround.
 
 30/12/2024: Added a version 2 node for animate-x named `Animate image with Animate_X_v2`. In addition to the Explicit Pose Indicator (EPI), the Implicit Pose Indicator (IPI) mentioned in the animate-x paper was implemented in this node and it provides a slight improvement over the previous animate-x nodes in resulting videos. Also added a `Repose image with Animate_X_v2` node which did not show much improvement over the `Repose image with Animate_X` node in image to image pose transfer tests. The `Repose image with UniAnimate` node is much better for image to image pose transfer.
