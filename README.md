@@ -18,7 +18,7 @@
 ## Updates
 
 📌10/02/2025: You can now use Animate-X on google colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Isi-dev/ComfyUI-UniAnimate-W/blob/main/Animate_X.ipynb)
-You can run up to 44 frames on the free version of colab without OOM errors.
+You can run up to 44 frames on the free version of colab without OOM errors. You can watch this [video](https://youtu.be/2HZgqL_a1-c) or read this [blog post](https://penioj.blogspot.com/2025/02/running-animate-x-on-google-colab-for.html) for more information. 
 
 📌28/01/2025: You can now download all the checkpoints needed to run UniAnimate & Animate-X [here](https://huggingface.co/Isi99999/UniAnimate_and_Animate-X_Models/tree/main).
 
