@@ -75,8 +75,10 @@ def inference_unianimate_long_entrance(seed, steps, useFirstFrame, reference_ima
     if cfg.world_size == 1:
         return worker(0, seed, steps, useFirstFrame, reference_image, refPose, pose_sequence, frame_interval, context_size, context_stride, context_overlap, max_frames, resolution, cfg, cfg_update)
     else:
-        return mp.spawn(worker, nprocs=cfg.gpus_per_machine, args=(cfg, cfg_update))
-    return cfg
+        # return mp.spawn(worker, nprocs=cfg.gpus_per_machine, args=(cfg, cfg_update))
+        print("No GPU detected!")
+        return None
+    # return cfg
 
 
 def make_masked_images(imgs, masks):
