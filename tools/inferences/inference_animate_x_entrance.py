@@ -73,8 +73,10 @@ def inference_animate_x_entrance(seed, steps, useFirstFrame, reference_image, re
     if cfg.world_size >= 1:
         return worker(0, seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequence, frame_interval, max_frames, resolution, cfg, cfg_update)
         # return worker(0, seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequence, original_driven_video_path, refpose_embeding_key, pose_embedding_key,frame_interval, max_frames, resolution, cfg, cfg_update)
-    # else:
+    else:
     #     return mp.spawn(worker, nprocs=cfg.gpus_per_machine, args=(cfg, cfg_update))
+        print("No GPU detected!")
+        return None
     return cfg
 
 
