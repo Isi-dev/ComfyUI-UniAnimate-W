@@ -72,11 +72,13 @@ def inference_animate_x_long_entrance(seed, steps, useFirstFrame, reference_imag
         cfg.gpus_per_machine = torch.cuda.device_count()
         cfg.world_size = cfg.pmi_world_size * cfg.gpus_per_machine
     
-    if cfg.world_size == 1:
+    if cfg.world_size >= 1:
         return worker(0, seed, steps, useFirstFrame, reference_image, refPose, pose_sequence, frame_interval, context_size, context_stride, context_overlap, max_frames, resolution, cfg, cfg_update)
     else:
-        return mp.spawn(worker, nprocs=cfg.gpus_per_machine, args=(cfg, cfg_update))
-    return cfg
+        # return mp.spawn(worker, nprocs=cfg.gpus_per_machine, args=(cfg, cfg_update))
+        print("No GPU detected!")
+        return None
+    # return cfg
 
 
 def make_masked_images(imgs, masks):
