@@ -69,7 +69,7 @@ def inference_unianimate_entrance(seed, steps, useFirstFrame, reference_image, r
         cfg.gpus_per_machine = torch.cuda.device_count()
         cfg.world_size = cfg.pmi_world_size * cfg.gpus_per_machine
     
-    if cfg.world_size == 1:
+    if cfg.world_size >= 1:
         return worker(0, seed, steps, useFirstFrame, reference_image, ref_pose, pose_sequence, frame_interval, max_frames, resolution, cfg, cfg_update)
     else:
         # return mp.spawn(worker, nprocs=cfg.gpus_per_machine, args=(cfg, cfg_update))
