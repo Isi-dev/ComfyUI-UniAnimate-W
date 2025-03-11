@@ -77,7 +77,7 @@ def inference_animate_x_entrance(seed, steps, useFirstFrame, reference_image, re
     #     return mp.spawn(worker, nprocs=cfg.gpus_per_machine, args=(cfg, cfg_update))
         print("No GPU detected!")
         return None
-    return cfg
+    # return cfg
 
 
 # def process_single_pose_embedding_tensor(pose_data):
