@@ -18,11 +18,9 @@
 ## Updates
 
 📌10/02/2025: You can now use Animate-X on google colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Isi-dev/ComfyUI-UniAnimate-W/blob/main/Animate_X.ipynb)
-You can run up to 44 frames on the free version of colab without OOM errors. You can watch this [video](https://youtu.be/2HZgqL_a1-c) or read this [blog post](https://penioj.blogspot.com/2025/02/running-animate-x-on-google-colab-for.html) for more information. 
+You can run up to 44 frames on the free version of colab without OOM errors. You can read this [blog post](https://penioj.blogspot.com/2025/02/running-animate-x-on-google-colab-for.html) for more information. 
 
 📌28/01/2025: You can now download all the checkpoints needed to run UniAnimate & Animate-X [here](https://huggingface.co/Isi99999/UniAnimate_and_Animate-X_Models/tree/main).
-
-📌18/01/2025: Released a [video](https://youtu.be/FpxT9EdphOE) to help users learn how to address pose adherence issues in Animate-X with a simple workaround.
 
 📌30/12/2024: Added a version 2 node for animate-x named `Animate image with Animate_X_v2`. In addition to the Explicit Pose Indicator (EPI), the Implicit Pose Indicator (IPI) mentioned in the animate-x paper was implemented in this node and it provides a slight improvement over the previous animate-x nodes in resulting videos. Also added a `Repose image with Animate_X_v2` node which did not show much improvement over the `Repose image with Animate_X` node in image to image pose transfer tests. The `Repose image with UniAnimate` node is much better for image to image pose transfer.
 
@@ -30,17 +28,11 @@ You can run up to 44 frames on the free version of colab without OOM errors. You
 
 📌20/12/2024: Added seperate config and UNET files for Animate-X to solve error identified in [issue #22](https://github.com/Isi-dev/ComfyUI-UniAnimate-W/issues/22)
 
-📌17/12/2024: Released a [video](https://youtu.be/OKFf8J-eMIc) comparing Animate_X with UniAnimate 
-
 📌16/12/2024: Added three nodes and associated workflows for Animate-X: `Repose image with Animate_X` for img2img pose transfer, `Animate image with Animate_X` for img2vid generation, and `Animate image with Animate_X_Long` for long video generation. 
 Install or Update this repository with the ComfyUI Manager to get these nodes. You will need to download the `animate-x_ckpt.pth` model and place it in 'ComfyUI-UniAnimate-W/checkpoints/' folder to use these nodes. The other four checkpoints required are the same as those used by UniAnimate. 
 You can download the checkpoints here:https://huggingface.co/Shuaishuai0219/Animate-X/tree/main
 The code for Animate-X is almost the same as that for UniAnimate, so I decided to include the Animate-X nodes here rather than creating a new repository. The requirements are also the same.
 You can visit the Animate-X repo via this link: https://github.com/antgroup/animate-x
-
-
-
-📌09/09/2024: Released a [video](https://youtu.be/Ne-DSBhfg8A) on using the two new UniAnimate nodes for best results 
 
 📌07/09/2024: Added two nodes: `Animate image with UniAnimate_Long` for long video generation, and `Repose image with UniAnimate` for img2img pose transfer
 
@@ -138,10 +130,6 @@ You can also change the pose of an image to that of another image as shown below
 
 <div align="center">
 <img src="repose.png" />
-
-You can watch a video on the basic workflow [here](https://youtu.be/vR8EHoAQziI) 
-<br></br>
-You can watch a video on the Installation [here](https://youtu.be/NFnhELV4bG0)
 
 </div>
 
